@@ -1,0 +1,3 @@
+Collez ici, à la place de ce texte, la lettre de motivation qui vous ressemble le plus,
+de la formule d'appel à la signature. L'agent reproduit son ton, pas son contenu.
+(Le nom du fichier est attendu tel quel par l'agent.)

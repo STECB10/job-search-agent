@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Démarrage automatique sur macOS. Remplacez CHEMIN par le dossier du dépôt
+  (et le PATH si Claude Code est installé ailleurs), copiez ce fichier dans
+  ~/Library/LaunchAgents/com.jobbot.plist, puis :
+      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.jobbot.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jobbot</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/caffeinate</string>
+        <string>-i</string>
+        <string>CHEMIN/.venv/bin/python</string>
+        <string>-m</string>
+        <string>jobbot</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>CHEMIN</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+    <key>StandardOutPath</key>
+    <string>CHEMIN/data/bot.log</string>
+    <key>StandardErrorPath</key>
+    <string>CHEMIN/data/bot.log</string>
+</dict>
+</plist>

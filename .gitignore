@@ -1,0 +1,11 @@
+# Secrets et environnement
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Données personnelles : profil, CV, lettres, configuration, base d'offres
+/config.yaml
+/profil/
+/exemples/
+/data/

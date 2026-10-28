@@ -1,0 +1,39 @@
+# Réponses factuelles pour pré-remplir les formulaires de candidature.
+# Le bot ne remplit JAMAIS une question factuelle laissée vide ici : il te la signale
+# sur Telegram, et tu la remplis toi-même dans le formulaire.
+
+prenom: ""
+nom: ""
+email: ""
+telephone: ""
+ville: ""
+pays: ""
+linkedin: ""
+github: ""
+site_web: ""
+entreprise_actuelle: ""
+poste_actuel: ""
+
+# ── À compléter par toi ──
+pretentions_salariales:
+  France: ""
+  Suisse: ""
+  Royaume-Uni: ""
+  États-Unis: ""
+  Canada: ""
+  autres pays: ""
+preavis: ""
+date_disponibilite: ""
+nationalite: ""
+autorisation_de_travail:
+  France et Union européenne: ""
+  Suisse: ""
+  Royaume-Uni: ""
+  États-Unis: ""
+  Canada: ""
+
+# ── Préférences ──
+demenagement: Oui, prêt à déménager en France, en Suisse ou dans un pays anglophone.
+langues: Français (langue maternelle), anglais (professionnel).
+comment_as_tu_connu_l_offre: Site carrière de l'entreprise
+questions_de_diversite: Je préfère ne pas répondre   # genre, origine, handicap…

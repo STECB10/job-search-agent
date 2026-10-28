@@ -1,0 +1,229 @@
+# Réglages du bot. Les secrets (clés, mots de passe) vont dans .env, pas ici.
+
+identite:                       # en-tête des lettres
+  nom: Prénom Nom
+  titre: Votre titre · Votre spécialité
+  adresse: 1 rue Exemple, 75000 Paris
+  telephone: 06 00 00 00 00
+  email: vous@exemple.fr
+  ville: Paris
+  linkedin: https://www.linkedin.com/in/votre-profil/
+
+cv:
+  fr: profil/CV.pdf
+  en: ""                        # CV anglais en PDF, facultatif
+
+# ─────────────────────────── Tri des offres ───────────────────────────
+tri:
+  seuil_lettre: 75              # note >= 75 : lettre rédigée et envoyée sur Telegram
+  seuil_signalement: 60         # 60 à 74 : signalée sans lettre, bouton « Rédiger »
+  age_max_jours: 10             # ignore les offres publiées il y a plus longtemps
+  max_offres_ia_par_cycle: 25   # plafond d'offres notées par l'IA à chaque passage
+
+  # Le titre doit contenir au moins un de ces motifs (expressions régulières, sans casse).
+  titres_cibles:
+    - 'data'
+    - 'donn[ée]es'
+    - 'scien(ce|tist|tifique)'
+    - 'machine.?learning'
+    - '\bml\b'
+    - '\bai\b'
+    - '\bia\b'
+    - 'intelligence artificielle'
+    - 'artificial intelligence'
+    - '\bllm'
+    - '\bnlp\b'
+    - 'deep.?learning'
+    - 'statisti'
+    - 'biostat'
+    - '[ée]pid[ée]miolog'
+    - 'quantitati'
+    - 'research'
+    - 'recherche'
+    - 'real.?world'
+    - '\brwe\b'
+    - 'analytics'
+    - 'insight'
+    - 'agentic|agents? (ia|ai|llm)|(ia|ai|llm) agents?'
+    - 'genai|generative|g[ée]n[ée]rati'
+
+  # Titre éliminé s'il contient un de ces motifs.
+  titres_exclus:
+    - '\bstages?\b|stagiaire|\bintern(ship)?s?\b|\bco-?op\b'
+    - 'alternan|apprenti|work.?study'
+    - 'doctorant|th[èe]se|phd (student|candidate|position|studentship)'
+    - 'post.?doc'
+    - 'enseignant|professeur|teacher|lecturer|ma[iî]tre de conf|\bater\b|formateur|tuteur|vacataire|instructor'
+    - 'b[ée]n[ée]vole|volunteer'
+    - '(data|database) (entry|clerk)'
+    - '\bsales\b|account (executive|manager)|business develop|recruiter|talent acquisition'
+    # Niveau trop élevé ou management d'équipe
+    - '\b(principal|staff|director|directeur|directrice|head of|vp|vice president|chief|partner)\b'
+    - 'engineering manager|lead manager|manager of|\bmanager,'
+    # Métiers voisins sans analyse de données
+    - 'data ?cent(er|re)|facilit(y|ies)|electrical|infrastructure architect'
+    - 'counsel|legal|lawyer|attorney|juriste|avocat'
+    - 'designer|marketing|event manager|community|communication'
+    - 'financ|billing|controller|comptab|accountant|actuar'
+    - 'annotation|translator|writer|r[ée]dacteur'
+    - 'technical program manager|support engineer|security'
+
+  # Employeur éliminé s'il contient un de ces motifs (sauf hôpitaux, voir code).
+  employeurs_exclus:
+    - 'universit[ée]|university|universit[äa]t|sorbonne'
+    - '[ée]cole|school|coll[èe]ge|lyc[ée]e|acad[ée]mie|academy|inspe|campus'
+    - 'organisme de formation|centre de formation|training'
+
+  # Lieu éliminé s'il contient un motif exclu ET aucun motif accepté.
+  # Un lieu vide ou ambigu est laissé au jugement de l'IA.
+  lieux_acceptes:
+    - 'france|paris|lyon|grenoble|lille|nantes|rennes|bordeaux|toulouse|marseille|montpellier|strasbourg|nice|sophia'
+    - 'suisse|switzerland|schweiz|z[üu]rich|gen[eè]v|lausanne|b[âa]le|basel|bern'
+    - 'united kingdom|\buk\b|england|scotland|london|londres|cambridge|oxford|manchester|edinburgh|bristol'
+    - 'ireland|irlande|dublin'
+    - 'canada|toronto|montr[ée]al|vancouver|qu[ée]bec|ottawa'
+    - 'united states|\busa?\b|new york|san francisco|boston|seattle|remote-friendly'
+    - 'australia|australie|sydney|melbourne|new zealand|auckland'
+    - '\beurope\b|\bemea\b|anywhere|worldwide'
+  lieux_exclus:
+    - 'israel|herzliya|tel aviv|india|bangalore|singapore|japan|japon|tokyo|korea|seoul|china|beijing|shanghai|hong kong'
+    - 'malaysia|kuala lumpur|indonesia|jakarta|vietnam|thailand|philippines|\bapac\b|\basia\b|latam'
+    - 'brazil|br[ée]sil|s[ãa]o paulo|mexico|argentina|chile|colombia'
+    - 'germany|allemagne|berlin|munich|m[üu]nchen|hamburg|poland|warsaw|krak[óo]w|finland|tampere|helsinki'
+    - 'netherlands|amsterdam|utrecht|spain|espagne|madrid|barcelona|italy|milan|portugal|lisbon|sweden|stockholm|denmark|copenhagen|norway|oslo|austria|vienna|czech|prague|romania|ukraine|greece|turkey|istanbul'
+    - 'dubai|uae|saudi|qatar|egypt|nigeria|kenya|south africa'
+    # Hors de ta liste (France, Suisse, pays anglophones) : retire cette ligne si tu veux la Belgique.
+    - 'belgi|brussels|bruxelles|luxembourg'
+
+  # Salaire annuel brut minimum, appliqué seulement quand l'offre affiche un salaire.
+  # Une offre est écartée si le HAUT de sa fourchette est sous ce seuil.
+  salaire_min_annuel:
+    EUR: 36000
+    CHF: 80000
+    GBP: 38000
+    USD: 70000
+    CAD: 70000
+    AUD: 85000
+    NZD: 80000
+
+  # Ce que lit l'IA pour noter chaque offre, en plus de profil/profil.md.
+  preferences: |
+    Lieux acceptés : toute la France, la Suisse, le Royaume-Uni, l'Irlande, le Canada,
+    les États-Unis, l'Australie, la Nouvelle-Zélande, ou télétravail complet depuis la France.
+    Prêt à déménager.
+    Priorités : IA (LLM, agents, machine learning), science des données, statistiques et
+    biostatistiques, données de santé, approches pluridisciplinaires mêlant sciences dures
+    et sciences sociales (entretiens, méthodes mixtes).
+    Employeurs préférés : startups et entreprises qui construisent un produit avec une vision
+    à moyen ou long terme ; labos de R&D industriels ; cabinets data/IA sérieux.
+    Acceptable mais moins attirant : hôpitaux et organismes publics de santé.
+    À éviter : universités, écoles, enseignement, postes purement académiques, postdocs,
+    recherche sans produit ni application.
+    Niveau visé : à adapter (par exemple « docteur avec 4 ans de recherche appliquée »). Postes
+    junior à confirmé, ou senior si l'offre accepte un doctorat comme expérience.
+    Pas de postes de direction (Head of, Director, VP). Pas de postes purement logiciel
+    sans data/IA (développeur web, DevOps).
+    Langues : français et anglais. Pas d'allemand : pénaliser les postes qui l'exigent.
+    États-Unis : pénaliser sauf si l'offre mentionne un sponsoring de visa.
+    Salaire : à préciser (par exemple « au moins 40 k€ brut annuel »).
+
+# ─────────────────────────── Sources ───────────────────────────
+sources:
+  # Pages carrières d'entreprises (API publiques Greenhouse, Lever, Ashby).
+  # Souvent la source la plus rapide. Ajoute ou retire des entreprises librement.
+  ats:
+    actif: true
+    intervalle_minutes: 15
+    entreprises:
+      # Santé et IA
+      - {nom: Owkin, ats: ashby, id: owkin}
+      - {nom: Doctolib, ats: ashby, id: doctolib}
+      - {nom: Alan, ats: ashby, id: alan}
+      - {nom: Nabla, ats: ashby, id: nabla}
+      - {nom: Lifen, ats: ashby, id: lifen}
+      - {nom: Inato, ats: ashby, id: inato}
+      - {nom: Raidium, ats: lever, id: raidium}
+      - {nom: Flo Health, ats: greenhouse, id: flohealth}
+      - {nom: PathAI, ats: greenhouse, id: pathai}
+      - {nom: insitro, ats: ashby, id: insitro}
+      - {nom: Isomorphic Labs, ats: greenhouse, id: isomorphiclabs}
+      - {nom: Valo Health, ats: greenhouse, id: valohealth}
+      # IA et data en France
+      - {nom: H Company, ats: ashby, id: hcompany}
+      - {nom: Dust, ats: ashby, id: dust}
+      - {nom: Photoroom, ats: ashby, id: photoroom}
+      - {nom: Poolside, ats: ashby, id: poolside}
+      - {nom: Dataiku, ats: greenhouse, id: dataiku}
+      - {nom: Shift Technology, ats: greenhouse, id: shifttechnology}
+      - {nom: Artefact, ats: greenhouse, id: artefact}
+      - {nom: Ekimetrics, ats: lever, id: ekimetrics}
+      - {nom: Pigment, ats: lever, id: pigment}
+      - {nom: Contentsquare, ats: lever, id: contentsquare}
+      - {nom: Mirakl, ats: greenhouse, id: mirakl}
+      - {nom: Algolia, ats: greenhouse, id: algolia}
+      # IA à l'international (Royaume-Uni, Suisse, Amérique du Nord)
+      - {nom: Faculty, ats: ashby, id: faculty}
+      - {nom: Synthesia, ats: ashby, id: synthesia}
+      - {nom: Wayve, ats: ashby, id: wayve}
+      - {nom: Scandit, ats: greenhouse, id: scandit}
+      - {nom: Cohere, ats: ashby, id: cohere}
+      - {nom: ElevenLabs, ats: ashby, id: elevenlabs}
+      - {nom: Anthropic, ats: greenhouse, id: anthropic}
+      - {nom: OpenAI, ats: ashby, id: openai}
+
+  # API officielle France Travail (gratuite). Identifiants : voir le README.
+  france_travail:
+    actif: true
+    intervalle_minutes: 30
+    mots_cles:
+      - data scientist
+      - machine learning
+      - intelligence artificielle
+      - biostatisticien
+      - LLM
+      - NLP
+      - données de santé
+
+  # Agrégateur Adzuna (gratuit, quota limité : garde un intervalle large).
+  adzuna:
+    actif: true
+    intervalle_minutes: 180
+    pays:
+      fr: [data scientist, machine learning, intelligence artificielle, biostatisticien]
+      ch: [data scientist, machine learning]
+      gb: [data scientist, machine learning, biostatistician]
+      ca: [data scientist, machine learning]
+      us: [data scientist health, machine learning health]
+      au: [data scientist, machine learning]
+      nz: [data scientist]
+
+  # Tes alertes emploi LinkedIn, lues dans ta boîte Gmail (lecture seule).
+  # Le bot ne se connecte jamais à LinkedIn. Les emails ne donnent que le titre,
+  # l'entreprise et le lieu : ces offres arrivent en « signalées », et le bot te
+  # demande de coller le texte de l'offre avant d'écrire la lettre.
+  linkedin_alertes:
+    actif: true
+    intervalle_minutes: 10
+    dossier: INBOX
+    expediteurs:
+      - jobalerts-noreply@linkedin.com
+      - jobs-noreply@linkedin.com
+      - jobs-listings@linkedin.com
+
+# ─────────────────────────── IA ───────────────────────────
+ia:
+  # « abonnement » : passe par Claude Code et ton abonnement Claude (pas de clé API,
+  # mais consomme tes quotas). « api » : clé ANTHROPIC_API_KEY, facturée à l'usage.
+  moteur: abonnement
+  claude_code: claude           # commande ou chemin complet de Claude Code
+  modele_tri: claude-opus-5-5
+  effort_tri: low               # low suffit pour noter une offre
+  modele_lettre: claude-opus-5-5
+  effort_lettre: high
+
+# ─────────────────────────── Envoi ───────────────────────────
+envoi:
+  # Si l'offre demande une candidature par email et que Gmail est configuré dans .env,
+  # le bot envoie CV + lettre à cette adresse quand tu cliques sur ✅.
+  # L'adresse est affichée dans le message Telegram avant ta validation.
+  email_auto: true
