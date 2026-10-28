@@ -15,8 +15,8 @@ cv:
 
 # ─────────────────────────── Tri des offres ───────────────────────────
 tri:
-  seuil_lettre: 75              # note >= 75 : lettre rédigée et envoyée sur Telegram
-  seuil_signalement: 60         # 60 à 74 : signalée sans lettre, bouton « Rédiger »
+  seuil_lettre: 70              # note >= 70 : lettre rédigée et envoyée sur Telegram
+  seuil_signalement: 60         # 60 à 69 : signalée sans lettre, bouton « Rédiger »
   age_max_jours: 10             # ignore les offres publiées il y a plus longtemps
   max_offres_ia_par_cycle: 25   # plafond d'offres notées par l'IA à chaque passage
 

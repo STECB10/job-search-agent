@@ -125,7 +125,7 @@ class Bot:
 
     async def send_offer(self, bot, row: dict, with_letter: bool) -> None:
         await bot.send_message(self.chat_id, self.card(row), parse_mode=ParseMode.HTML,
-                               disable_web_page_preview=True, disable_notification=not with_letter,
+                               disable_web_page_preview=True,
                                reply_markup=None if with_letter else self.kb_signal(row))
         if with_letter:
             await self.send_letter(bot, row)

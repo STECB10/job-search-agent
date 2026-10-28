@@ -19,8 +19,8 @@ flowchart LR
     B[Alertes LinkedIn<br/>lues dans Gmail] --> D
     C[France Travail · Adzuna] --> D
     D[Filtres stricts<br/>titre, lieu, employeur,<br/>âge, salaire] --> E[Note sur 100<br/>justifiée par un LLM]
-    E -->|≥ 75| F[Lettre dans<br/>votre style]
-    E -->|60 à 74| G[Offre signalée]
+    E -->|≥ 70| F[Lettre dans<br/>votre style]
+    E -->|60 à 69| G[Offre signalée]
     F --> H{Telegram<br/>Valider · Modifier · Ignorer}
     G --> H
     H -->|✅| I[PDF + CV<br/>ou email]
