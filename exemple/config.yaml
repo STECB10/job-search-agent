@@ -46,6 +46,9 @@ tri:
     - 'insight'
     - 'agentic|agents? (ia|ai|llm)|(ia|ai|llm) agents?'
     - 'genai|generative|g[ée]n[ée]rati'
+    # Évaluation et sûreté des modèles
+    - 'evaluat|[ée]valuation|\bevals?\b|benchmark|red.?team|alignment|model behavio'
+    - 'ai safety|safety (research|eval|scien|data)|s[ûu]ret[ée] de l.ia'
 
   # Titre éliminé s'il contient un de ces motifs.
   titres_exclus:
@@ -58,7 +61,8 @@ tri:
     - '(data|database) (entry|clerk)'
     - '\bsales\b|account (executive|manager)|business develop|recruiter|talent acquisition'
     # Niveau trop élevé ou management d'équipe
-    - '\b(principal|staff|director|directeur|directrice|head of|vp|vice president|chief|partner)\b'
+    - '\b(principal|director|directeur|directrice|head of|vp|vice president|chief|partner)\b'
+    - '(?<!technical )\bstaff\b'      # « Member of Technical Staff » reste accepté
     - 'engineering manager|lead manager|manager of|\bmanager,'
     # Métiers voisins sans analyse de données
     - 'data ?cent(er|re)|facilit(y|ies)|electrical|infrastructure architect'
@@ -66,7 +70,9 @@ tri:
     - 'designer|marketing|event manager|community|communication'
     - 'financ|billing|controller|comptab|accountant|actuar'
     - 'annotation|translator|writer|r[ée]dacteur'
-    - 'technical program manager|support engineer|security'
+    - 'technical program manager|support engineer'
+    - 'security engineer|offensive security|security (grc|controls|assurance)|information security|cybersecurity'
+    - '\(contract\)|\bcontractor\b'   # missions d'annotation à la tâche
 
   # Employeur éliminé s'il contient un de ces motifs (sauf hôpitaux, voir code).
   employeurs_exclus:
@@ -114,6 +120,12 @@ tri:
     Priorités : IA (LLM, agents, machine learning), science des données, statistiques et
     biostatistiques, données de santé, approches pluridisciplinaires mêlant sciences dures
     et sciences sociales (entretiens, méthodes mixtes).
+    Cible prioritaire nouvelle : les métiers de l'évaluation des modèles d'IA et des LLM
+    (évaluations et benchmarks, méthodologie statistique des évaluations, évaluation humaine,
+    red teaming, sûreté des modèles, évaluation clinique d'outils d'IA en santé). Son profil
+    (statistiques, biostatistiques, protocoles, recueil de données et entretiens, agents de
+    vérification) s'y prête bien : note ces postes au moins aussi haut qu'un poste de data scientist.
+    Pas de missions d'annotation à la tâche.
     Employeurs préférés : startups et entreprises qui construisent un produit avec une vision
     à moyen ou long terme ; labos de R&D industriels ; cabinets data/IA sérieux.
     Acceptable mais moins attirant : hôpitaux et organismes publics de santé.
@@ -170,6 +182,19 @@ sources:
       - {nom: ElevenLabs, ats: ashby, id: elevenlabs}
       - {nom: Anthropic, ats: greenhouse, id: anthropic}
       - {nom: OpenAI, ats: ashby, id: openai}
+      # Évaluation et sûreté des modèles d'IA
+      - {nom: UK AI Security Institute, ats: greenhouse, id: aisi}
+      - {nom: Apollo Research, ats: lever, id: apolloresearch}
+      - {nom: METR, ats: lever, id: metr}
+      - {nom: Vals AI, ats: ashby, id: vals-ai}
+      - {nom: Braintrust, ats: ashby, id: braintrust}
+      - {nom: Galileo, ats: greenhouse, id: galileo}
+      - {nom: LangChain, ats: ashby, id: langchain}
+      # IA médicale (évaluation clinique des modèles)
+      - {nom: Abridge, ats: ashby, id: abridge}
+      - {nom: OpenEvidence, ats: ashby, id: openevidence}
+      - {nom: Ambience Healthcare, ats: ashby, id: ambiencehealthcare}
+      - {nom: Suki, ats: greenhouse, id: suki}
 
   # API officielle France Travail (gratuite). Identifiants : voir le README.
   france_travail:
@@ -183,6 +208,7 @@ sources:
       - LLM
       - NLP
       - données de santé
+      - évaluation IA
 
   # Agrégateur Adzuna (gratuit, quota limité : garde un intervalle large).
   adzuna:
@@ -191,7 +217,7 @@ sources:
     pays:
       fr: [data scientist, machine learning, intelligence artificielle, biostatisticien]
       ch: [data scientist, machine learning]
-      gb: [data scientist, machine learning, biostatistician]
+      gb: [data scientist, machine learning, biostatistician, AI evaluation]
       ca: [data scientist, machine learning]
       us: [data scientist health, machine learning health]
       au: [data scientist, machine learning]
