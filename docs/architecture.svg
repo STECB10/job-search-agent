@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1110 560" width="1110" height="560" role="img"><title>Architecture : trois sources alimentent un pipeline local qui enregistre tout dans SQLite, appelle Claude Code pour noter et rédiger, et échange avec vous sur Telegram avant de pré-remplir le formulaire dans Chrome.</title><style>
+svg{color:#1d2421;font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif}
+text{font-size:13px;fill:#1d2421}
+.t-small{font-size:11.5px;fill:#5d6762}.t-mono{font-family:Menlo,'IBM Plex Mono',monospace;font-size:11.5px}.t-bold{font-weight:600}
+.box{fill:#fff;stroke:#1d2421;stroke-width:1.2}.box-ai{fill:#e2efec;stroke:#0d6b5f;stroke-width:1.5}
+.box-hu{fill:#f7ead9;stroke:#b25f00;stroke-width:1.5}.box-off{fill:none;stroke:#5d6762;stroke-width:1.2;stroke-dasharray:5 4}
+.zone{fill:none;stroke:#c9cfcb;stroke-width:1.5;stroke-dasharray:6 5}
+.edge{fill:none;stroke:#1d2421;stroke-width:1.3}.edge-ai{fill:none;stroke:#0d6b5f;stroke-width:1.6}
+.edge-hu{fill:none;stroke:#b25f00;stroke-width:1.6}.edge-off{fill:none;stroke:#5d6762;stroke-width:1.3;stroke-dasharray:5 4}
+.life{stroke:#c9cfcb;stroke-width:1.2;stroke-dasharray:3 4}
+.ai-text{fill:#0d6b5f}.hu-text{fill:#b25f00}
+.head{fill:#1d2421}.head-ai{fill:#0d6b5f}.head-hu{fill:#b25f00}.head-off{fill:#5d6762}
+</style><rect x="0" y="0" width="1110" height="560" fill="#ffffff"/>
+          <defs>
+            <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head"/></marker>
+            <marker id="a-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-ai"/></marker>
+            <marker id="a-hu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-hu"/></marker>
+            <marker id="a-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-off"/></marker>
+          </defs>
+
+          <!-- Sources -->
+          <text x="20" y="74" class="t-small">SOURCES</text>
+          <rect x="20" y="90" width="200" height="72" rx="4" class="box"/>
+          <text x="32" y="114" class="t-bold">Pages carrières</text>
+          <text x="32" y="133" class="t-small">Greenhouse · Lever · Ashby</text>
+          <text x="32" y="150" class="t-small">43 entreprises, toutes les 15 min</text>
+          <rect x="20" y="190" width="200" height="72" rx="4" class="box"/>
+          <text x="32" y="214" class="t-bold">Gmail (IMAP)</text>
+          <text x="32" y="233" class="t-small">alertes LinkedIn, lecture seule</text>
+          <text x="32" y="250" class="t-small">toutes les 10 min</text>
+          <rect x="20" y="290" width="200" height="56" rx="4" class="box-off"/>
+          <text x="32" y="314" class="t-bold">France Travail · Adzuna</text>
+          <text x="32" y="333" class="t-small">inactifs, clés absentes</text>
+
+          <!-- Service local -->
+          <rect x="262" y="52" width="512" height="488" rx="8" class="zone"/>
+          <text x="278" y="74" class="t-small">SERVICE macOS (launchd) · un passage toutes les 5 min</text>
+          <rect x="282" y="100" width="104" height="60" rx="4" class="box"/>
+          <text x="334" y="125" text-anchor="middle" class="t-bold">Collecte</text>
+          <text x="334" y="144" text-anchor="middle" class="t-small">dédoublonnage</text>
+          <rect x="404" y="100" width="104" height="60" rx="4" class="box"/>
+          <text x="456" y="125" text-anchor="middle" class="t-bold">Filtres</text>
+          <text x="456" y="144" text-anchor="middle" class="t-small">gratuits, sans IA</text>
+          <rect x="526" y="100" width="104" height="60" rx="4" class="box-ai"/>
+          <text x="578" y="125" text-anchor="middle" class="t-bold">Tri</text>
+          <text x="578" y="144" text-anchor="middle" class="t-small">≤ 25 par passage</text>
+          <rect x="648" y="100" width="104" height="60" rx="4" class="box-ai"/>
+          <text x="700" y="125" text-anchor="middle" class="t-bold">Rédaction</text>
+          <text x="700" y="144" text-anchor="middle" class="t-small">si note ≥ 70</text>
+          <line x1="386" y1="130" x2="402" y2="130" class="edge" marker-end="url(#a)"/>
+          <line x1="508" y1="130" x2="524" y2="130" class="edge" marker-end="url(#a)"/>
+          <line x1="630" y1="130" x2="646" y2="130" class="edge" marker-end="url(#a)"/>
+
+          <!-- Base -->
+          <path d="M430 210 a90 12 0 0 1 180 0 v52 a90 12 0 0 1 -180 0 z" class="box"/>
+          <path d="M430 210 a90 12 0 0 0 180 0" class="edge"/>
+          <text x="520" y="242" text-anchor="middle" class="t-bold">jobbot.sqlite</text>
+          <text x="520" y="260" text-anchor="middle" class="t-small">offres, notes, lettres, statuts</text>
+          <line x1="520" y1="162" x2="520" y2="196" class="edge" marker-start="url(#a)" marker-end="url(#a)"/>
+          <text x="528" y="184" class="t-small">chaque étape enregistrée</text>
+
+          <!-- Bot et pré-remplissage -->
+          <rect x="282" y="310" width="226" height="60" rx="4" class="box"/>
+          <text x="295" y="335" class="t-bold">Bot Telegram</text>
+          <text x="295" y="354" class="t-small">boutons, /scan /stats /cv</text>
+          <line x1="470" y1="272" x2="420" y2="308" class="edge" marker-end="url(#a)"/>
+          <text x="452" y="296" class="t-small">offres notées</text>
+          <rect x="282" y="440" width="226" height="72" rx="4" class="box-ai"/>
+          <text x="295" y="464" class="t-bold">Pré-remplissage</text>
+          <text x="295" y="483" class="t-small">processus séparé, Playwright</text>
+          <text x="295" y="500" class="t-small">réponses rédigées par Claude</text>
+          <line x1="395" y1="372" x2="395" y2="438" class="edge-hu" marker-end="url(#a-hu)"/>
+          <text x="403" y="410" class="t-small hu-text">🖥️ lancé par vous</text>
+
+          <!-- Externe à droite -->
+          <rect x="820" y="90" width="270" height="88" rx="4" class="box-ai"/>
+          <text x="834" y="115" class="t-bold">Claude Code · abonnement Claude</text>
+          <text x="834" y="135" class="t-mono">claude -p --json-schema</text>
+          <text x="834" y="155" class="t-small">Opus 5.5, sortie JSON contrôlée</text>
+          <polyline points="578,98 578,36 800,36 800,112 818,112" class="edge-ai" marker-end="url(#a-ai)"/>
+          <text x="600" y="30" class="t-small ai-text">offre + profil → note sur 100</text>
+          <line x1="754" y1="148" x2="818" y2="148" class="edge-ai" marker-end="url(#a-ai)"/>
+          <text x="760" y="168" class="t-small ai-text">lettre (JSON)</text>
+
+          <rect x="820" y="220" width="270" height="56" rx="4" class="box"/>
+          <text x="834" y="244" class="t-bold">Gmail (SMTP)</text>
+          <text x="834" y="263" class="t-small">email de candidature, si l'offre en donne un</text>
+          <line x1="510" y1="318" x2="818" y2="262" class="edge-off" marker-end="url(#a-off)"/>
+          <text x="610" y="282" class="t-small">après ✅ seulement</text>
+
+          <rect x="820" y="314" width="270" height="70" rx="4" class="box-hu"/>
+          <text x="834" y="340" class="t-bold">Vous, sur Telegram</text>
+          <text x="834" y="360" class="t-small">✅ Valider · ✏️ Modifier · ❌ Ignorer</text>
+          <line x1="510" y1="335" x2="818" y2="335" class="edge" marker-end="url(#a)"/>
+          <text x="560" y="328" class="t-small">fiche, lettre, PDF, CV</text>
+          <line x1="818" y1="360" x2="512" y2="360" class="edge-hu" marker-end="url(#a-hu)"/>
+          <text x="560" y="376" class="t-small hu-text">vos choix et vos consignes</text>
+
+          <rect x="820" y="440" width="270" height="72" rx="4" class="box"/>
+          <text x="834" y="464" class="t-bold">Chrome, sur votre Mac</text>
+          <text x="834" y="483" class="t-small">formulaire de l'offre, rempli,</text>
+          <text x="834" y="500" class="t-small">arrêté avant « Submit »</text>
+          <line x1="510" y1="476" x2="818" y2="476" class="edge" marker-end="url(#a)"/>
+          <text x="560" y="469" class="t-small">remplit, joint CV et lettre</text>
+          <line x1="955" y1="386" x2="955" y2="438" class="edge-hu" marker-end="url(#a-hu)"/>
+          <text x="963" y="416" class="t-small hu-text">vous cliquez « Envoyer »</text>
+
+          <!-- Sources vers collecte -->
+          <polyline points="222,126 252,126 252,124 280,124" class="edge" marker-end="url(#a)"/>
+          <polyline points="222,226 248,226 248,140 280,140" class="edge" marker-end="url(#a)"/>
+          <polyline points="222,318 244,318 244,152 280,152" class="edge-off" marker-end="url(#a-off)"/>
+        </svg>

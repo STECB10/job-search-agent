@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1070 360" width="1070" height="360" role="img"><title>Parcours d'une offre : lue, éliminée par les filtres ou notée par Claude, puis écartée, signalée ou dotée d'une lettre, proposée sur Telegram, validée ou ignorée avec un motif.</title><style>
+svg{color:#1d2421;font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif}
+text{font-size:13px;fill:#1d2421}
+.t-small{font-size:11.5px;fill:#5d6762}.t-mono{font-family:Menlo,'IBM Plex Mono',monospace;font-size:11.5px}.t-bold{font-weight:600}
+.box{fill:#fff;stroke:#1d2421;stroke-width:1.2}.box-ai{fill:#e2efec;stroke:#0d6b5f;stroke-width:1.5}
+.box-hu{fill:#f7ead9;stroke:#b25f00;stroke-width:1.5}.box-off{fill:none;stroke:#5d6762;stroke-width:1.2;stroke-dasharray:5 4}
+.zone{fill:none;stroke:#c9cfcb;stroke-width:1.5;stroke-dasharray:6 5}
+.edge{fill:none;stroke:#1d2421;stroke-width:1.3}.edge-ai{fill:none;stroke:#0d6b5f;stroke-width:1.6}
+.edge-hu{fill:none;stroke:#b25f00;stroke-width:1.6}.edge-off{fill:none;stroke:#5d6762;stroke-width:1.3;stroke-dasharray:5 4}
+.life{stroke:#c9cfcb;stroke-width:1.2;stroke-dasharray:3 4}
+.ai-text{fill:#0d6b5f}.hu-text{fill:#b25f00}
+.head{fill:#1d2421}.head-ai{fill:#0d6b5f}.head-hu{fill:#b25f00}.head-off{fill:#5d6762}
+</style><rect x="0" y="0" width="1070" height="360" fill="#ffffff"/>
+          <defs>
+            <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head"/></marker>
+            <marker id="b-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-ai"/></marker>
+            <marker id="b-hu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-hu"/></marker>
+            <marker id="b-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="head-off"/></marker>
+          </defs>
+          <rect x="16" y="150" width="120" height="54" rx="27" class="box"/>
+          <text x="76" y="174" text-anchor="middle" class="t-bold">Offre lue</text>
+          <text x="76" y="192" text-anchor="middle" class="t-small t-mono">≈ 3 000</text>
+
+          <rect x="186" y="40" width="140" height="54" rx="27" class="box-off"/>
+          <text x="256" y="64" text-anchor="middle" class="t-bold">Éliminée</text>
+          <text x="256" y="82" text-anchor="middle" class="t-small t-mono">2 924 · filtres</text>
+          <rect x="186" y="150" width="140" height="54" rx="27" class="box"/>
+          <text x="256" y="174" text-anchor="middle" class="t-bold">À noter</text>
+          <text x="256" y="192" text-anchor="middle" class="t-small t-mono">file d'attente</text>
+          <polyline points="138,166 160,166 160,67 184,67" class="edge-off" marker-end="url(#b-off)"/>
+          <text x="16" y="128" class="t-small">titre, lieu, âge, salaire</text>
+          <line x1="138" y1="177" x2="184" y2="177" class="edge" marker-end="url(#b)"/>
+
+          <rect x="390" y="40" width="140" height="54" rx="27" class="box-off"/>
+          <text x="460" y="64" text-anchor="middle" class="t-bold">Écartée</text>
+          <text x="460" y="82" text-anchor="middle" class="t-small t-mono">49 · note &lt; 60</text>
+          <rect x="390" y="150" width="140" height="54" rx="27" class="box"/>
+          <text x="460" y="174" text-anchor="middle" class="t-bold">Signalée</text>
+          <text x="460" y="192" text-anchor="middle" class="t-small t-mono">16 · de 60 à 69</text>
+          <rect x="390" y="262" width="140" height="54" rx="27" class="box-ai"/>
+          <text x="460" y="286" text-anchor="middle" class="t-bold">Lettre prête</text>
+          <text x="460" y="304" text-anchor="middle" class="t-small t-mono">4 · note ≥ 70</text>
+          <line x1="328" y1="168" x2="388" y2="78" class="edge-ai" marker-end="url(#b-ai)"/>
+          <line x1="328" y1="177" x2="388" y2="177" class="edge-ai" marker-end="url(#b-ai)"/>
+          <line x1="328" y1="188" x2="388" y2="280" class="edge-ai" marker-end="url(#b-ai)"/>
+          <text x="334" y="232" class="t-small ai-text">note de Claude</text>
+          <line x1="460" y1="206" x2="460" y2="260" class="edge-hu" marker-end="url(#b-hu)"/>
+          <text x="468" y="238" class="t-small hu-text">✍️ Rédiger</text>
+
+          <rect x="590" y="262" width="140" height="54" rx="27" class="box"/>
+          <text x="660" y="286" text-anchor="middle" class="t-bold">Proposée</text>
+          <text x="660" y="304" text-anchor="middle" class="t-small t-mono">sur Telegram</text>
+          <line x1="532" y1="289" x2="588" y2="289" class="edge" marker-end="url(#b)"/>
+          <path d="M638 318 C638 352, 682 352, 682 318" class="edge-hu" marker-end="url(#b-hu)"/>
+          <text x="694" y="346" class="t-small hu-text">✏️ Modifier, réécrite</text>
+
+          <rect x="790" y="262" width="130" height="54" rx="27" class="box"/>
+          <text x="855" y="286" text-anchor="middle" class="t-bold">Validée</text>
+          <text x="855" y="304" text-anchor="middle" class="t-small t-mono">CV choisi, PDF</text>
+          <line x1="732" y1="289" x2="788" y2="289" class="edge-hu" marker-end="url(#b-hu)"/>
+          <text x="748" y="281" class="t-small hu-text">✅</text>
+          <rect x="960" y="262" width="100" height="54" rx="27" class="box-hu"/>
+          <text x="1010" y="293" text-anchor="middle" class="t-bold">Postulée</text>
+          <line x1="922" y1="289" x2="958" y2="289" class="edge-hu" marker-end="url(#b-hu)"/>
+          <text x="900" y="248" class="t-small hu-text">Envoyer ou email</text>
+
+          <rect x="790" y="150" width="130" height="54" rx="27" class="box-off"/>
+          <text x="855" y="174" text-anchor="middle" class="t-bold">Ignorée</text>
+          <text x="855" y="192" text-anchor="middle" class="t-small t-mono">+ motif</text>
+          <line x1="700" y1="262" x2="800" y2="206" class="edge-hu" marker-end="url(#b-hu)"/>
+          <text x="696" y="232" class="t-small hu-text">❌</text>
+          <polyline points="855,148 855,122 256,122 256,148" class="edge-off" marker-end="url(#b-off)"/>
+          <text x="560" y="116" class="t-small">le motif affine le tri suivant</text>
+        </svg>

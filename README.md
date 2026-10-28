@@ -13,20 +13,10 @@ qui cliquez sur « Envoyer ».
 Sur 10 jours d'usage réel : **2 700 offres lues, 37 retenues** pour être notées, quelques-unes
 proposées avec une lettre.
 
-```mermaid
-flowchart LR
-    A[Pages carrières<br/>Greenhouse · Lever · Ashby] --> D
-    B[Alertes LinkedIn<br/>lues dans Gmail] --> D
-    C[France Travail · Adzuna] --> D
-    D[Filtres stricts<br/>titre, lieu, employeur,<br/>âge, salaire] --> E[Note sur 100<br/>justifiée par un LLM]
-    E -->|≥ 70| F[Lettre dans<br/>votre style]
-    E -->|60 à 69| G[Offre signalée]
-    F --> H{Telegram<br/>Valider · Modifier · Ignorer}
-    G --> H
-    H -->|✅| I[PDF + CV<br/>ou email]
-    I --> J[Formulaire pré-rempli<br/>dans Chrome]
-    J --> K[Vous cliquez<br/>sur Envoyer]
-```
+![Architecture : les sources alimentent un pipeline local qui enregistre tout dans SQLite, appelle Claude pour noter et rédiger, et échange avec vous sur Telegram avant de pré-remplir le formulaire dans Chrome](docs/architecture.svg)
+
+*Vert : appels à Claude. Orange : vos gestes. Pointillés : facultatif. Rien ne part en votre nom
+sans l'un de vos gestes.*
 
 ## Ce qu'il fait
 
@@ -58,6 +48,36 @@ flowchart LR
     L'agent ne les devine jamais.
   - Les cases de consentement ne sont jamais cochées à votre place.
 - **Envoi par email** quand l'offre donne une adresse, seulement après votre ✅.
+
+## Le fonctionnement en schémas
+
+### Le parcours d'une offre
+
+Chaque offre a un statut dans la base. Les filtres gratuits font l'essentiel du tri : environ 97 %
+des offres sont éliminées sans aucun appel à l'IA. Le motif d'un refus affine le tri suivant.
+
+![Parcours d'une offre : lue, éliminée par les filtres ou notée par Claude, puis écartée, signalée ou dotée d'une lettre, proposée sur Telegram, validée ou ignorée avec un motif](docs/parcours-offre.svg)
+
+### Quand vous validez une lettre
+
+Chaque colonne est un acteur, le temps descend. La candidature ne part que sur l'un de vos gestes :
+votre ✅, qui déclenche l'email quand l'offre en donne un, ou votre clic « Submit » dans Chrome.
+
+![Séquence de validation : choix du CV, PDF ou email, pré-remplissage avec les réponses de Claude, bilan sur Telegram, puis envoi par vous](docs/sequence-validation.svg)
+
+### Ce qui est envoyé à Claude
+
+Chaque appel sépare une partie stable (consignes, fiche de faits, préférences) d'une partie variable
+(l'offre). La réponse doit respecter un schéma JSON, puis le code la contrôle : note bornée, adresse
+email acceptée seulement si elle figure dans l'offre, option de formulaire inventée laissée vide.
+
+![Anatomie d'un appel à Claude : consignes stables et offre variable, schéma JSON, contrôles dans le code, enregistrement](docs/requete-claude.svg)
+
+| Appel | Quand | Rendu (schéma JSON) |
+|---|---|---|
+| Noter une offre | chaque offre qui passe les filtres, 25 au plus par passage | `score`, `resume`, `points_forts`, `points_faibles`, `type_employeur`, `langue`, `email_candidature`, `destinataire` |
+| Écrire la lettre | note ≥ 70, bouton ✍️ Rédiger ou consigne ✏️ | `objet`, `corps`, `message_court` |
+| Répondre au formulaire | bouton 🖥️ Pré-remplir | `reponses` : `cle`, `valeur`, `statut` (rempli, à vérifier, vide), `raison` |
 
 ## Ce qu'il ne fait pas, volontairement
 
